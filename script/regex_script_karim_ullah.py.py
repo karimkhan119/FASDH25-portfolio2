@@ -1,58 +1,44 @@
-'''This is my script for mini project 2 DH task 2A Python class.
 
-This script contains the code we wrote last week
-to count the number of times each place in Gaza
-is mentioned in our corpus.
-
-Now, we want to store this count into a tsv file.
-
-I have written a function (write csv) to do this -
-but it has some mistakes in it.
-
-Please fix the mistakes and call the function
-to write the 
-
-'''
 import re
 import os
+import pandas as pd
 
-# fix this function!
 
-def write_tsv(rows,column,path):
-    """This function converts a dictionary to a tsv file.
+# saves dictionary data to tsv file with specified columns.
+# to store place_name counts
+def write_tsv(data,column_list, path): 
+    
 
-    It takes three arguments:
-        data (dict): the dictionary
-        column_list (list): a list of column names
-        path (str): the path to which the tsv file will be written
-    """
-    import pandas as pd
-    # turn the dictionary into a list of (key, value) tuples (this is correct):
+    # converts the dictionary into a list of (key, value) for dataframe creation:
     items = list(data.items())
-    # create a dataframe from the items list (this is correct):
+    # converts the list of place counts into a table:
     df = pd.DataFrame.from_records(items, columns=column_list)
-    # write the dataframe to tsv:
+    # write the dataframe in tsv form to avoid commas:
     df.to_csv(path, sep="\t", index=False)
 
 
 
-# define which folder to use:
-# NB: these are different articles than in the previous weeks
-folder = r"../articles"  
+# Define path to the folder conatining all article text files:
+folder = "../articles"  
 
 # define the patterns we want to search:
 
-# load the gazetteer from the tsv file:
-path = "gazetteers/geonames_gaza_selection.tsv"
+# path to the gazeteer file from the portfolio:
+path = "../gazetteers/geonames_gaza_selection.tsv"
+# read file with UTF-8 to handle Arabic/Hebrew place names:
 with open(path, encoding="utf-8") as file:
+    # read entire file content into a string
     data = file.read()
 
-# build a dictionary of patterns from the place names in the first column:
+# create an empty dictionary to store place_name: count:
 patterns = {}
+# split gazetteer text into rows one per line to access each place name:
 rows = data.split("\n")
+# skip the first row and include the remaining to form regex pattern:
 for row in rows[1:]:
+    #split row into tab-separated columns:
     columns = row.split("\t")
-    name = columns[0]
+    all_names = [column[0], column[1]] + column[2].split(',')
     patterns[name] = 0
 
 # count the number of times each pattern is found in the entire folder:
@@ -81,3 +67,4 @@ for pattern in patterns:
 # call the function to write your tsv file:
 columns = ["asciiname", "frequency"]
 tsv_filename = "frequencies.tsv"
+write_tsv(patterns, columns, tsv_filename)
