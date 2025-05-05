@@ -1,4 +1,4 @@
-Name	Latitude	Longitude
+place_name	Latitude	Longitude
 West Bank	19.38197	-81.39281
 Dura	28.8	49.23333
 Hebron	31.52935	35.0938
@@ -102,7 +102,7 @@ Ofer	32.62257	34.98302
 Jordan Valley	42.97404	-117.0543
 Area C	-25.55132	-54.61622
 Kadri	3.34322	30.99265
-alJiftlik	NA	NA
+alJiftlik	32.1438648	35.4970585
 Farsiya	35.95584	42.96643
 Makhoul	33.40788	37.3558
 Tubas	32.32091	35.36989
@@ -170,7 +170,7 @@ Bnei Menashe	32.08074	34.8338
 Kolasib	24.22388	92.67869
 Bethlehem	40.62593	-75.37046
 Nairoukh	NA	NA
-Shawawra	NA	NA
+Shawawra	31.6919055	35.2663102
 Tehran	35.69439	51.42151
 X	19.22364	-70.53051
 Spain	40	-4
@@ -178,12 +178,12 @@ Madrid	40.4165	-3.70256
 Oman	21	57
 Gulf	-7.7246	145.08545
 Bani Suheila	31.34337	34.32337
-alFukhari	NA	NA
+alFukhari	31.281465	34.332429
 Damascus	33.5102	36.29128
 Baghdad	33.34058	44.40088
 Near East	17.97421	-76.80663
 Serbia	44.81892	20.45998
-BosniaHerzegovina	NA	NA
+BosniaHerzegovina	44.3053476	17.5961467
 Srebrenica	44.10748	19.29669
 Algeria	28	3
 State of Israel	20.5	84.41667
@@ -200,7 +200,7 @@ Erbil	36.19117	44.00943
 Pakistan Balochistan province	41.22825	33.15674
 Iran SistanBaluchestan province	32	53
 Rask	29.49114	57.18543
-SistanBaluchestan	NA	NA
+SistanBaluchestan	28.1292481	60.8236848
 Strait of Hormuz	26.56667	56.25
 Persian Gulf	27	51
 Davos	46.80429	9.83723
@@ -213,7 +213,7 @@ Dhamar	14.54274	44.40514
 alBayda	18.86139	42.07078
 Arabian Sea	25	45
 Bab alMandeb Strait	30.73222	56.7175
-alKarama	NA	NA
+alKarama	25.2482136	55.3050609
 Beruit	NA	NA
 Yemen coast	12.79891	45.03313
 Maghazi	31.42234	34.38501
@@ -240,7 +240,7 @@ New Delhi	28.62137	77.2148
 India Basmati	22	79
 North America	46.07323	-100.54688
 North Africa	32.95337	9.97559
-alShifa	NA	NA
+alShifa	26.40617	50.1186225
 Welch	30.23604	-92.82265
 Kampala	0.31628	32.58219
 Peru	-10	-75.25
@@ -262,7 +262,7 @@ Rabat	34.01325	-6.83255
 Western Sahara	10.01211	105.83224
 Marrakesh	31.63416	-7.99994
 Maghreb	30	5
-alWalaja	NA	NA
+alWalaja	31.7306702	35.1613881
 Gilo	-7.45	-40.83333
 Har Gilo	31.72119	35.1724
 Al Rayyan	25.29194	51.42444
@@ -308,9 +308,9 @@ Yemen Red Sea	12.79891	45.03313
 Rawaa	NA	NA
 alMawasi district	14.3656	44.7778
 Cameroon	6	12.5
-alAhli	NA	NA
+alAhli	24.5855249	46.6853994
 Egypt Sinai Peninsula	31.19518	29.90976
-Philadelphi	NA	NA
+Philadelphi	35.4873018	6.4668699
 Karem Abu Salem	30.486	31.60823
 Kerem Shalom	31.22777	34.28459
 Greece	39	22
@@ -446,12 +446,12 @@ Shujayea	NA	NA
 Dahiyeb	NA	NA
 Aroura	38.92219	-111.93409
 alArouri	NA	NA
-alMughraqa	NA	NA
-alMaghazi	NA	NA
+alMughraqa	31.4672522	34.4097598
+alMaghazi	31.4227161	34.3864103
 Maghazi Roads	43.84258	-68.88115
 Deir alBalah	31.41834	34.34933
 Houthi	NA	NA
-alTanf	NA	NA
+alTanf	33.4369226	38.8354602
 Hashemite Kingdom of Jordan	31	36
 Dahiya	8.0264	80.533
 Jamaa Islamiya	35.46804	-5.70106
@@ -464,7 +464,7 @@ Great Lakes	26.50687	127.94581
 Lake Michigan	44.00778	-86.75698
 Beit Nabala	31.5464	34.49514
 Syria Damascus	33.26954	35.19626
-Mazzeh	NA	NA
+Mazzeh	33.502155	NA
 Borj el Barajneh	33.84347	35.49874
 West Beirut	51.48653	-0.40583
 Beirut Hamra	33.89332	35.50157
@@ -483,10 +483,10 @@ Eilat	29.55805	34.94821
 Dead Sea	44.86777	-73.62391
 Eastern Mediterranean region	39.42657	41.23464
 Hamoud	15.64004	-11.51864
-Taalbaya	NA	NA
+Taalbaya	33.8172909	35.8676904
 Rashidiya	25.22499	55.38947
 Maroun El Ras	33.10381	35.4444
-Rmeish	NA	NA
+Rmeish	33.0777979	35.3678431
 Miraj	16.8671	74.70146
 Tal alHawa	-36.72494	-73.11684
 zarahsultana	NA	NA
@@ -498,7 +498,7 @@ Nir Am	31.51959	34.58006
 Mefalsim	31.50125	34.5637
 Hanita	33.08746	35.17364
 Mattat	33.04134	35.35858
-Margaliot	NA	NA
+Margaliot	33.2148047	35.5444859
 Adamit	33.07971	35.21103
 Zarit	33.09955	35.2889
 Malkia	60.75482	24.06197
@@ -515,11 +515,11 @@ Gazas	-23.5	33
 TomWhiteGaza	NA	NA
 Entebbe	0.05621	32.47949
 Central Gaza Strip	-2.02107	24.69727
-AlAqsa	NA	NA
+AlAqsa	31.7763042	35.2355961
 Syria Golan Heights	35	38
 Kurdistan	37	44
 Panjgur Pakistan Balochistan province	48.11313	16.86215
-RedSea	NA	NA
+RedSea	20.2965624	38.5343146
 Walla	-2.85662	33.32102
 Rwanda	-2	30
 East Timor	-8.83333	125.75
@@ -534,7 +534,7 @@ Sandridge Beach	-37.83931	144.91747
 ZIM Ganges	45.06873	-83.54131
 Sydney	-33.86785	151.20732
 Brisbane	-27.46794	153.02809
-northGaza	NA	NA
+northGaza	31.5501268	34.5033134
 Palestine_UN	NA	NA
 Taiz province	13.5	44
 AlBayda	18.86139	42.07078
@@ -549,17 +549,17 @@ Republic of Cyprus	24	121
 Dhekelia	35.01667	33.775
 USA	39.76	-98.5
 League of Arab States	29.75634	-94.97187
-alSaftawi	NA	NA
+alSaftawi	31.030393	31.3794472
 El Amal City Hospital	32.893	0.54839
-AlFukhari	NA	NA
+AlFukhari	31.281465	34.332429
 alAmal	31.39064	37.3146
-alNasser	NA	NA
+alNasser  29.2784902	47.9622915
 alKatiba	NA	NA
 Cape Town	-33.92584	18.42322
 South Africansfrom	38.02807	-97.94033
 Africa4Palestine	NA	NA
 Western Cape province	40.64575	-79.91382
 Paltel	32.08712	35.18388
-Jawwal	NA	NA
+Jawwal	31.5686515	35.0741061
 Salem	44.9429	-123.0351
 Copenhagen	55.67594	12.56553
