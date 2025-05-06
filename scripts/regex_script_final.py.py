@@ -45,7 +45,7 @@ for row in rows[1:]:
     name_list.append(asciiname)
 
 
-    # create a regex pattern by joining the names with the '|' symbol #from ChatGPT conversation 1
+    # create a regex pattern by joining the names with the '|' symbol #help from ChatGPT conversation 1 1
     regex_pattern = "|".join(re.escape(name) for name in set(name_list) if name)
 
     # add the patterns to the dictionary and start with the count 0
@@ -73,29 +73,34 @@ for filename in os.listdir(folder):
     with open(file_path, encoding="utf-8") as file: # Open and read the file content
         text = file.read()
 
-        # find all the occurences of the patterns in the text:
+        # Loop through all the place patterns and find their occurrences in the text:
         for placename, pattern in patterns.items():
-            matches = re.findall(r"\b(" + pattern + r")/b", text, flags=re.IGNORECASE)  # Use word boundaries and ignore case
-            n_matches = len(matches)  # number of times the place was found
+            # Find all occurrences of the pattern in the text, considering word boundaries and ignoring case:
+            matches = re.findall(r"\b(" + pattern + r")/b", text, flags=re.IGNORECASE)
+            n_matches = len(matches)  # Count the number of occurrences of the place in the text.
             # add the number of times it was found to the total frequency
-            if placename not in place_counts:
+            if placename not in place_counts: # If the place is not already in the dictionary, initialize its count to 0
                 place_counts[placename] = 0
             place_counts[placename] += n_matches
 
             if n_matches > 0:
-                # Initialize if this pattern is not in the dictionary yet
+                # Initialize if this pattern is not in the dictionary
                 if placename not in mentions_per_month:
                     mentions_per_month[placename] = {}
-                # Initialize the month if not already there
+                # Initialize the month entry for the placename if not present
                 if month not in mentions_per_month[placename]:
                     mentions_per_month[placename][month] = 0
-                # Add the count to the monthly mentions
+                # Add the current count of mentions to the existing total for the month
                 mentions_per_month[placename][month] += n_matches
                
-rows = []
+rows = []# Create an empty list to store the rows for saving data
+# Loop through each place name in the mentions_per_month dictionary
 for placename in mentions_per_month:
+    # Loop through each month associated with the place name
     for month in mentions_per_month[placename]:
+        # Get the mention count for the place and month
         count = mentions_per_month[placename][month]
+        # Append a row with the place name, month, and mention count to the rows list
         rows.append([placename, month, count])
 
 # Create DataFrame and export to a CSV file
