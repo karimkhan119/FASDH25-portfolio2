@@ -92,18 +92,15 @@ for filename in os.listdir(folder):
                 # Add the count to the monthly mentions
                 mentions_per_month[placename][month] += n_matches
                
-# Prepare header for the TSV file
-tsv_output = "placename\tmonth\tcount"
-
-# Loop through the mentions_per_month dictionary to populate the rows
+rows = []
 for placename in mentions_per_month:
-    for month in mentions_per_month[placename]: # for each monh where the place was mentioned
-        count = mentions_per_month[placename][month] # get the number of mentions for place in this month
-        tsv_output += f"\n{placename}\t{month}\t{count}" # add a new row to the tsv with tab seperated value
+    for month in mentions_per_month[placename]:
+        count = mentions_per_month[placename][month]
+        rows.append([placename, month, count])
 
-# Write the output to a TSV file similar syntax to reading a file
-with open("regex_counts.tsv", mode="w", encoding="utf-8") as f:
-    f.write(tsv_output)
+# Create DataFrame and export to a CSV file
+df = pd.DataFrame(rows, columns=["placename", "month", "count"])
+df.to_csv("regex_counts.tsv", sep="\t", index=False)
             
 
 
