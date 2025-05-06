@@ -3,13 +3,8 @@ import plotly.express as px
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 
-# Step 1: Load the regex_counts data
-df = pd.read_csv("regex_counts.tsv", sep="\t")
-
-# Debug: Check if file is empty
-if df.empty:
-    print("❌ The file is empty. No data to map. Check your regex extraction step.")
-    exit()
+# Step 1: Load the regex_counts data from the Outputs folder
+df = pd.read_csv("../Outputs/regex_counts.tsv", sep="\t")
 
 # Step 2: Geocode the placenames using Nominatim
 geolocator = Nominatim(user_agent="geoapi")
@@ -36,4 +31,9 @@ fig = px.scatter_geo(
 )
 
 fig.update_layout(geo=dict(showland=True, landcolor="lightgray"))
+
+# Save the map as HTML in the Outputs folder
+fig.write_html("../Outputs/regex_map.html")
+
+# Optional: also display the map in a browser
 fig.show()
