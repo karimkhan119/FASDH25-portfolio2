@@ -116,10 +116,22 @@ FASDH25-portfolio2/
 
 
 ### Advantages
+
 -Can detect new and unknown place names.
 -Understands context and can work across different sentence structures.
 -Does not rely on a fixed list.
 ### Disadvantages
+
 -Slower and more resource intensive.
 -Sometimes extracts incorrect or irrelevant entities.
 -Requires post-processing to clean the output.
+
+## Style used for regex map and why (comparision)
+
+-The map generated in this project uses a natural earth projection with a scatter geo style, which plots geographical coordinates as individual points on a global map.
+-This style was chosen because it effectively visualizes the spatial distribution of place name mentions across different regions.
+-The natural earth projection provides a visually balanced and proportionally accurate view of the continents, making it ideal for global datasets.
+-The scatter plot format allows each place to be marked with a circle whose size corresponds to its frequency of mention, enabling quick visual comparison of prominence.
+-This style is both intuitive and informative, making it easy for viewers to interpret the density and spread of place references without overwhelming them with unnecessary geographic detail. -It’s particularly suitable for digital humanities work, where clarity, simplicity, and contextual insight into textual geographies are essential.
+-regex_map/Maps/FASDH25-portfolio2
+-ner_map/Maps/FASDH25-portfolio2
