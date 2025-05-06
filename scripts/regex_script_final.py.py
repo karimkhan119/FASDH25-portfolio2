@@ -8,10 +8,8 @@ import pandas as pd
 # Define the path to the folder containing article text files
 folder = "../articles"
 
-
 # Define the path to the gazetteer file which contains the place names
 gazetteer_path = "../gazetteers/geonames_gaza_selection.tsv"
-
 
 # Open and read files (which contains all the place names we want to search for)
 with open(gazetteer_path, encoding="utf-8") as file:
@@ -24,19 +22,17 @@ rows = data.strip().split("\n")
 # create an empty dictionary to store place_name an their count 
 patterns = {}
 # split the gazetteer data by a new line to each row
-
+rows = data.split("\n")
 
 # Loop through each row in the gazetteer (excluding the header)
 for row in rows[1:]:
     # Split each row by tab to separate the columns of gazetteer 
-    columns = row.strip().split("\t")
+    columns = row.split("\t")
 
-    if len(columns) < 1:
-        continue
+    # extract the main place names (asciname)
+    asciiname = columns[0].strip()  
 
-    asciiname = columns[0].strip()
-    if not asciiname:
-        continue
+    # Check if there are alternate names in the 6th column  
     if len(columns) > 5:
         # If alternate names exist (in column 6), add them to the list
         alternatenames = columns[5]
@@ -63,13 +59,14 @@ mentions_per_month = {}
 
 # Loop through each article file in the folder
 for filename in os.listdir(folder):
-    if filename[:10] < "2023-10-07": # Skip files before 2023-10-07
-        continue
 
     # build the file path
     file_path = os.path.join(folder, filename)# build the file path
 
-    
+    # Skip files before 2023-10-07
+    if filename[:10] < "2023-10-07":  # goes through the first 10 characters in filename which represent YYYY-MM-DD
+        continue
+
     # Extract the YYYY-MM part for the monthly count (e.g., "2023-11")
     month = filename[:7]
 
@@ -96,6 +93,8 @@ for filename in os.listdir(folder):
                 # Add the current count of mentions to the existing total for the month
                 mentions_per_month[placename][month] += n_matches
                
+# Prepare header for the TSV file
+tsv_output = "placename\tmonth\tcount"
 
 # Loop through the mentions_per_month dictionary to populate the rows
 data_for_df = []
@@ -106,10 +105,9 @@ for placename in mentions_per_month:
 
 
 # Create DataFrame and export to a CSV file
-df = pd.DataFrame(data_for_df, columns=["placename", "month", "count"])
-df.to_csv("../Outputs/regex_counts.tsv", sep="\t", index=False)
+df = pd.DataFrame(rows, columns=["placename", "month", "count"])
+df.to_csv("regex_counts.tsv", sep="\t", index=False)
             
 
-print("Saved regex_counts.tsv")
 
 
