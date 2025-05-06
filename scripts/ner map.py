@@ -1,19 +1,19 @@
 import pandas as pd
 import plotly.express as px
 
-# Load the data
+# Loading the data data usig which we will create the map
 mentions_data = pd.read_csv("ner_counts.tsv", sep="\t")
 coords_data = pd.read_csv("ner_gazetteer.tsv", sep="\t")
 
-# Print column names to confirm structure
+# Print column names to confirm that the columns are correct for smooth merging
 print("Mentions columns:", mentions_data.columns.tolist())
 print("Coords columns:  ", coords_data.columns.tolist())
 
-# Rename columns to match for merging
+# Rename columns to match for merging e.g the spelling column "place name" should be exactly the same for successful merging
 mentions_data.rename(columns={"place name": "place_name", "count": "mention_count"}, inplace=True)
 coords_data.rename(columns={"place name": "place_name", "Latitude": "latitude", "Longitude": "longitude"}, inplace=True)
 
-# Merge datasets
+# Merge datasets to use coordinates data of the places and frequency of mentions data at the same time
 df = pd.merge(mentions_data, coords_data, on="place_name")
 
 # Convert columns to numeric and drop rows with invalid/missing data
@@ -22,7 +22,7 @@ df[['mention_count', 'latitude', 'longitude']] = df[['mention_count', 'latitude'
 )
 df = df.dropna(subset=['mention_count', 'latitude', 'longitude'])
 
-# Create scatter map
+# Creating a scatter map for which we are setting values of variables which will define the attributes of the map
 fig = px.scatter_map(
     df,
     lat="latitude",
