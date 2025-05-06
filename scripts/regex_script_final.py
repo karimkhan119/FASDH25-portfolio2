@@ -98,11 +98,12 @@ for filename in os.listdir(folder):
                
 
 # Loop through the mentions_per_month dictionary to populate the rows
-data_for_df = []
-for placename in mentions_per_month:
-    for month in mentions_per_month[placename]:
-        count = mentions_per_month[placename][month]
-        data_for_df.append({"placename": placename, "month": month, "count": count})
+data_for_df = [] # Create an empty list to store data for the DataFrame
+
+for placename in mentions_per_month: # Loop through each place name
+    for month in mentions_per_month[placename]: # Loop through each month for that place
+        count = mentions_per_month[placename][month] # Loop through each month for that place
+        data_for_df.append({"placename": placename, "month": month, "count": count}) # Add the data as a dictionary to the list
 
 
 # Create DataFrame and export to a CSV file
