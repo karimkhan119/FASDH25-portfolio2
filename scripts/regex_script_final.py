@@ -8,8 +8,10 @@ import pandas as pd
 # Define the path to the folder containing article text files
 folder = "../articles"
 
+
 # Define the path to the gazetteer file which contains the place names
 gazetteer_path = "../gazetteers/geonames_gaza_selection.tsv"
+
 
 # Open and read files (which contains all the place names we want to search for)
 with open(gazetteer_path, encoding="utf-8") as file:
@@ -22,17 +24,19 @@ rows = data.strip().split("\n")
 # create an empty dictionary to store place_name an their count 
 patterns = {}
 # split the gazetteer data by a new line to each row
-rows = data.split("\n")
+
 
 # Loop through each row in the gazetteer (excluding the header)
 for row in rows[1:]:
     # Split each row by tab to separate the columns of gazetteer 
-    columns = row.split("\t")
+    columns = row.strip().split("\t")
 
-    # extract the main place names (asciname)
-    asciiname = columns[0].strip()  
+    if len(columns) < 1:
+        continue
 
-    # Check if there are alternate names in the 6th column  
+    asciiname = columns[0].strip()
+    if not asciiname:
+        continue
     if len(columns) > 5:
         # If alternate names exist (in column 6), add them to the list
         alternatenames = columns[5]
@@ -59,13 +63,14 @@ mentions_per_month = {}
 
 # Loop through each article file in the folder
 for filename in os.listdir(folder):
+    if filename[:10] < "2023-10-07":
+        continue
 
     # build the file path
     file_path = os.path.join(folder, filename)# build the file path
 
     # Skip files before 2023-10-07
-    if filename[:10] < "2023-10-07":  # goes through the first 10 characters in filename which represent YYYY-MM-DD
-        continue
+
 
     # Extract the YYYY-MM part for the monthly count (e.g., "2023-11")
     month = filename[:7]
@@ -76,7 +81,7 @@ for filename in os.listdir(folder):
         # Loop through all the place patterns and find their occurrences in the text:
         for placename, pattern in patterns.items():
             # Find all occurrences of the pattern in the text, considering word boundaries and ignoring case:
-            matches = re.findall(r"\b(" + pattern + r")/b", text, flags=re.IGNORECASE)
+            matches = re.findall(r"\b(" + pattern + r")\b", text, flags=re.IGNORECASE)
             n_matches = len(matches)  # Count the number of occurrences of the place in the text.
             # add the number of times it was found to the total frequency
             if placename not in place_counts: # If the place is not already in the dictionary, initialize its count to 0
@@ -93,20 +98,22 @@ for filename in os.listdir(folder):
                 # Add the current count of mentions to the existing total for the month
                 mentions_per_month[placename][month] += n_matches
                
-rows = []# Create an empty list to store the rows for saving data
-# Loop through each place name in the mentions_per_month dictionary
+# Prepare header for the TSV file
+
+
+# Loop through the mentions_per_month dictionary to populate the rows
+data_for_df = []
 for placename in mentions_per_month:
-    # Loop through each month associated with the place name
     for month in mentions_per_month[placename]:
-        # Get the mention count for the place and month
         count = mentions_per_month[placename][month]
-        # Append a row with the place name, month, and mention count to the rows list
-        rows.append([placename, month, count])
+        data_for_df.append({"placename": placename, "month": month, "count": count})
+
 
 # Create DataFrame and export to a CSV file
-df = pd.DataFrame(rows, columns=["placename", "month", "count"])
+df = pd.DataFrame(data_for_df, columns=["placename", "month", "count"])
 df.to_csv("regex_counts.tsv", sep="\t", index=False)
             
 
+print("Saved regex_counts.tsv")
 
 
